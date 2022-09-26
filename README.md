@@ -1,5 +1,7 @@
 # Todo
 
+Learnings:
+* to create a OTP project with a supervisor `mix new {project name} --sup`
 **TODO: Add description**
 
 ## Installation
