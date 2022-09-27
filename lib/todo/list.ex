@@ -10,6 +10,9 @@ defmodule Todo.List do
     GenServer.cast(list, {:add, item})
   end
 
+  def update(list, item) do
+    GenServer.cast(list, {:update, item})
+  end
 
   ###
   # Genserver API (callbacks)
@@ -33,5 +36,11 @@ defmodule Todo.List do
     {:noreply, state}
   end
 
+  def handle_cast({:update, item}, state) do
+    index = Enum.find_index(state.items, &(&1.id == item.id))
+    items = List.replace_at(state.items, index, item)
+    state = %{state | items: items}
+    {:noreply, state}
+  end
 
 end
